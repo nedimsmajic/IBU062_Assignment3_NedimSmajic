@@ -45,5 +45,39 @@
 - **PC-4**: *Devive model* - PC-PT
 - **IP-address**: `210.3.14.5`
 
+# **DHCP(Dynamic Host Configuration Protocol) commands**
+DHCP (Dynamic Host Configuration Protocol) is a network protocol that
+automatically assigns IP addresses to devices on a network.
+-In my setup, I connected two switches to a router and configured DHCP for
+the first and second switch.
+## First switch
+**ip dhcp pool MYPOOL1**- To start, I entered the router's configuration
+mode and created a DHCP pool named **MYPOOL1**, which would be responsible
+for assigning IP addresses to the devices connected to the first switch.
+**network 168.90.0.0 255.255.0.0**- I defined the network range as
+**168.90.0.0** with a subnet mask of **255.255.0.0**, so the router would
+assign IP addresses within this range.
+**default-router 168.90.0.1**- Next, I specified the default gateway as
+**168.90.0.1**, which is the router's IP address, allowing the devices to
+communicate outside their local network.
+**dns-server 8.8.8.8**- I also set **8.8.8.8** as the DNS server, using
+Google's public DNS for domain name resolution.
+**exit** -After completing the configuration for **MYPOOL1**, I exited the
+pool setup and returned to global configuration mode.
 
+## Second switch
+**ip dhcp pool MYPOOL2**- For the second switch, I started by entering the
+router's configuration mode and created a DHCP pool named **MYPOOL2**,
+which is responsible for assigning IP addresses to the devices connected
+to the second switch.
+**network 210.3.14.0 255.255.255.0**- I then defined the network range as
+210.3.14.0 with a subnet mask of 255.255.255.0, devices on thos network
+will recive IP addresses from 210.3.14.0.
+**default-router 210.3.14.1**- I set the default gateway to 210.3.14.1,
+which is the router's IP address in this network, enabling devices to
+communicate outside their local network.
+**dns-server 8.8.8.8**- Additionally, I configured 8.8.8.8 as the DNS
+server, using Google's public DNS for domain name resolution.
+**exit**- After completing the configuration for MYPOOL2, I exited the
+DHCP pool setup and returned to global configuration mode.
 
